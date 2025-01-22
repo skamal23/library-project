@@ -1,6 +1,7 @@
 html,body {
     display: flex;
     flex-direction: column;
+    /*background-color: lightgray; */ 
     justify-content: center;
     align-items: center;
     margin: 0;
@@ -41,7 +42,20 @@ html,body {
     background-color: black;
     border-radius: 5%;
     border: 2px solid black;
-
-
-
 }
+
+dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    width: 300px;
+    max-width: 90%;
+  }
+  
+  /* Blur effect on the backdrop */
+  dialog::backdrop {
+    backdrop-filter: blur(5px); /* Apply blur to the backdrop */
+    background: rgba(0, 0, 0, 0.4); /* Optional: add a semi-transparent background */
+  }

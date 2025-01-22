@@ -15,3 +15,14 @@ function addBookToLibrary(author,title,pages,read){
 function displayBook(book){
 
 }
+
+//Button functionality
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector(".addButton");
+const closeButton = document.querySelector(".closeButton");
+showButton.addEventListener("click",()=>{
+    dialog.showModal();
+});
+closeButton.addEventListener("click",()=>{
+    dialog.close();
+});
