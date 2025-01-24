@@ -1,5 +1,7 @@
 html, body {
   display: flex;
+  font-family: 'Roboto', sans-serif;
+  background: darkgray;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -11,22 +13,23 @@ html, body {
 
 .addButton {
   margin-bottom: 2%;
+  font-family: 'Roboto', sans-serif;
   height: 5%;
   width: 25%;
   border-radius: 7px;
-  background-color: skyblue;
+  background-color: lightcyan;
   font-size: 20px;
   font-weight: bolder;
-  border: 2px solid black;
+  border: 3px solid black;
 }
 
 .container {
   display: grid;
-  background-color: lightgray;
   border: 4px solid black;
+  background-color: white;
   border-radius: 5%;
-  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Fixed minimum size for each column */
-  grid-template-rows: repeat(4, minmax(200px, 1fr));  /* Fixed minimum size for each row */
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); 
+  grid-template-rows: repeat(4, minmax(200px, 1fr));  
   justify-items: center;
   align-items: center;
   padding: 20px;
@@ -43,22 +46,24 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 30px;
-  width: 100%; /* Ensures book fills the grid cell */
-  height: 100%; /* Ensures book fills the grid cell */
-  background-color: #FBCEB1;
+  width: 100%; 
+  height: 100%; 
   border-radius: 5%;
   border: 2px solid black;
-  box-sizing: border-box; /* Include padding and border in the book's size */
-  overflow: hidden; /* Prevents overflowing content from breaking the grid layout */
+  box-sizing: border-box; 
+  overflow: hidden; 
 }
 
 .book p {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold; 
   color: #333;
   margin: 5px 0;
-  font-family: Arial, sans-serif;
+  word-wrap: break-word; 
+  max-height: 50%; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
-
 dialog {
   display: none;
   flex-direction: column;
@@ -91,7 +96,7 @@ dialog::backdrop {
 }
 
 .remove {
-  position: absolute; /* Position it relative to the parent element (.book) */
+  position: absolute; 
   background-color: #FBCEB1;
   top: 10px;
   left: 10px;

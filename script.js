@@ -12,35 +12,61 @@ function addBookToLibrary(author,title,pages,read){
     myLibrary.push(book);
 }
 
-function displayBooks(){
-    bookcase = document.querySelector(".container");
-    bookcase.innerHTML = "";
-    myLibrary.forEach((book) => {
+function removeBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
+}
+
+function displayBooks() {
+    const bookcase = document.querySelector(".container");
+    bookcase.innerHTML = ''; 
+
+    myLibrary.forEach((book, index) => {
         const bookDiv = document.createElement("div");
-        bookDiv.classList.add("book");
-        const authorElement = document.createElement("p");
-        authorElement.textContent = `Author: ${book.author}`;
-        const titleElement = document.createElement("p");
-        titleElement.textContent = `Title: ${book.title}`;
-        const pagesElement = document.createElement("p");
-        pagesElement.textContent = `Pages: ${book.pages}`;
-        const readElement = document.createElement("p");
-        readElement.textContent = `Read: ${book.read ? "Yes" : "No"}`;
+        bookDiv.className = "book";
+
+    
+        const authorP = document.createElement("p");
+        authorP.textContent = `Author: ${book.author}`;
+        const titleP = document.createElement("p");
+        titleP.textContent = `Title: ${book.title}`;
+        const pagesP = document.createElement("p");
+        pagesP.textContent = `Pages: ${book.pages}`;
+        const readP = document.createElement("p");
+        readP.textContent = `Read: ${book.read ? "Yes" : "No"}`;
+
+        bookDiv.appendChild(authorP);
+        bookDiv.appendChild(titleP);
+        bookDiv.appendChild(pagesP);
+        bookDiv.appendChild(readP);
+
         const close = document.createElement("div");
-        close.className = "remove";
-        close.appendChild(Object.assign(document.createElement("button"), { className: "closeButton", textContent: "X"}));
-        bookDiv.appendChild(close);
-        bookDiv.appendChild(authorElement);
-        bookDiv.appendChild(titleElement);
-        bookDiv.appendChild(pagesElement);
-        bookDiv.appendChild(readElement);
+        close.className = "close";
+        
+        const removeButton = document.createElement("button");
+        removeButton.className = "closeButton";
+        removeButton.textContent = "X";
+        removeButton.setAttribute("data-index", index);
+        if(book.read){
+            bookDiv.style.backgroundColor = "#CDFFCD";
+            removeButton.style.backgroundColor = "#CDFFCD"; 
+        }
+        else{
+            bookDiv.style.backgroundColor = "#FFC6C4";
+            removeButton.style.backgroundColor = "#FFC6C4"; 
+        }
+        
+        
+        close.appendChild(removeButton);
+        bookDiv.appendChild(close);   
         bookcase.appendChild(bookDiv);
+        removeButton.addEventListener("click", () => {
+            removeBookFromLibrary(index);
+            displayBooks(); 
+        });
     });
 }
 
 
-
-//Button functionality
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector(".addButton");
 const closeButton = document.querySelector(".closeButton");
@@ -49,12 +75,10 @@ showButton.addEventListener("click", () => {
     dialog.showModal();
 });
 
-// Close the dialog when the "X" button is clicked
 closeButton.addEventListener("click", () => {
     dialog.close();
 });
 
-//Form functionality
 const form = document.querySelector("#bookForm");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
